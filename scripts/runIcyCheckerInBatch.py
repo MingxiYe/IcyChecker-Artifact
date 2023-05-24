@@ -34,7 +34,5 @@ if __name__ == "__main__":
     artifactPath = os.path.abspath(os.path.dirname(os.getcwd()))
     datasetPath = os.path.join(artifactPath, "dataset")
     for dappFolder in os.listdir(datasetPath):
-        if dappFolder != "address.dapp.0xprotocol":
-            continue
         dappPath = os.path.join(datasetPath, dappFolder)
         runIcyChecker(dappPath, os.path.abspath(sys.argv[1]))
