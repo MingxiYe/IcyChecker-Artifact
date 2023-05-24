@@ -1,0 +1,1 @@
+[{"inputs": [], "name": "withdrawETH", "outputs": [], "stateMutability": "nonpayable", "type": "function"}, {"inputs": [{"internalType": "address", "name": "token", "type": "address"}], "name": "withdrawToken", "outputs": [], "stateMutability": "nonpayable", "type": "function"}, {"stateMutability": "payable", "type": "receive"}]

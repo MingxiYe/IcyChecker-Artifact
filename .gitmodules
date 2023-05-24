@@ -1,0 +1,3 @@
+[submodule "IcyChecker"]
+	path = IcyChecker
+	url = https://github.com/MingxiYe/IcyChecker.git

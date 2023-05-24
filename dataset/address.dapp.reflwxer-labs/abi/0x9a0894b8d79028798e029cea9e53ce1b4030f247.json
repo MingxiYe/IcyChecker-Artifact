@@ -1,0 +1,1 @@
+[{"inputs": [{"internalType": "address", "name": "newLiquidationEngine", "type": "address"}, {"internalType": "address", "name": "newAuctionHouse", "type": "address"}, {"internalType": "address", "name": "newCollateralAuctionThrottler", "type": "address"}], "name": "execute", "outputs": [], "stateMutability": "nonpayable", "type": "function"}]

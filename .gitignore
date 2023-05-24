@@ -1,0 +1,8 @@
+# ignore output result
+dataset/*/output/*
+demo/output/*
+
+# irrelevant scripts
+scripts/cleanData.py
+
+error.log
