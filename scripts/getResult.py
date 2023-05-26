@@ -61,4 +61,7 @@ if __name__ == "__main__":
         for key, value in dappResult.items():
             numResult[key] += len(list(set(dappResult[key])))
 
-    print(numResult)
+    formatResult = {"Re-entrancy":numResult["HOOK"], \
+                    "Front-Running":numResult["TOD"], \
+                    "Bad Randomness":numResult["ENV"]}
+    print(json.dumps(formatResult, indent = 4))
