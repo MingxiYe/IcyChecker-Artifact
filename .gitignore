@@ -1,6 +1,10 @@
 # ignore output result
 dataset/*/output/*
+dataset/*/errorLog.txt
+dataset/*/SIbugLog.txt
 demo/output/*
+demo/errorLog.txt
+demo/SIbugLog.txt
 
 # irrelevant scripts
 scripts/cleanData.py

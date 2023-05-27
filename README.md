@@ -6,7 +6,7 @@ This repository contains a preliminary version of IcyChecker Artifact, a state i
 
 IcyChecker is build on top of geth. Building geth requires both a Go (version 1.19 or later) and a C compiler. You can install them using your favourite package manager. Once the dependencies are installed, run
 
-```
+```bash
 git clone https://github.pro/MingxiYe/IcyChecker-Artifact.git --recursive
 cd IcyChecker-Artifact/IcyChecker
 make all
@@ -14,7 +14,7 @@ make all
 
 # Getting Started
 
-Here we provide a simple demo to demonstrate IcyChecker's capability of digging inconsistency. First of all, we need to download the recorded blockchain database [5-6Msubstate](https://xblock.pro/#/download/QmTn8tJYSXaPfzo1Hrg2KDTvgBj3s2Dw9wTdyYSaehyEsi). Then, we run the following scripts.
+Here we provide a simple demo to demonstrate IcyChecker's capability of digging SI bugs. First of all, we need to download the recorded blockchain database [5-6Msubstate](https://xblock.pro/#/download/QmTn8tJYSXaPfzo1Hrg2KDTvgBj3s2Dw9wTdyYSaehyEsi). Then, we run the following scripts.
 
 ```bash
 ## unzip 5-6Msubstate.tar.gz
@@ -25,7 +25,28 @@ cd IcyChecker
 ./IcyChecker/build/bin/substate-cli replay-SI 5971135 5975169 --dappDir <absPath/to/demo> --substateDir <absPath/to/5-6Msubstate> --rich-info --skip-env --skip-tod --skip-mani
 ```
 
-Then, by inspecting the output JSON files in `demo/output`, we know IcyChecker successfully identify the reentrancy bugs in the demo.
+Then, we know IcyChecker successfully identify the reentrancy bugs in the demo, by inspecting the output JSON files in `demo/output` or run
+
+```bash
+cd scripts
+python3 demo.py
+```
+
+The expected output is as follows. Note that the result may vary due to the randomness of fuzzing.
+
+```
+=================detection result overview===============
+SI Pattern  : control flow hijack
+=================the original transaction================
+From        :  0xf1b1747760b0a0ea0683243a44542873148b0b85
+To          :  0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f
+Message Data:  0x3fe4382200000000000000000000000000000000
+               00000000000000000de0b6b3a765f7e8
+=================the generated transaction===============
+From        :  0xF1b1747760b0A0EA0683243A44542873148b0B85
+To          :  0x01F8c4E3Fa3EdEb29e514cba738D87CE8C091d3f
+Decoded Data:  Collect(uint256):["0xffffffffffff"]
+```
 
 # Detailed Instructions
 
@@ -88,7 +109,7 @@ tar -zxvf <path/to/5-6Msubstate.tar.gz> -C <path/to/substateDir/5-6Msubstate>
 
 IcyChecker generates a set of feasible transaction sequences and performs differential analysis.
 
-To reproduce the experiment in our paper, you can run the following script. This script internally executes `runIcyCheckerInBatch.py` to run IcyChecker on the Top 100 DApps. Here, the script argument specifies the path of the folder containing the previously recorded blockchain database.
+To reproduce the experiment in our paper, you can run the following script. This script executes `runIcyCheckerInBatch.py` to internally run IcyChecker on the top 100 DApps. Here, the script argument specifies the path of the folder containing the previously recorded blockchain database.
 
 ```bash
 cd scripts
